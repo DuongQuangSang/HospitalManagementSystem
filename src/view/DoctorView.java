@@ -6,10 +6,12 @@
 package view;
 
 import controller.DoctorService;
+import controller.ListDoctorService;
 import controller.PatientService;
 import java.awt.event.ItemEvent;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
@@ -17,6 +19,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Doctor;
+import model.ListDoctor;
 import model.Patient;
 
 /**
@@ -319,7 +322,7 @@ public class DoctorView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "医生ID", "医師名", "性別", "所属科室", "給与"
+                "医生ID", "医師名", "性別", "所属科室ID", "所属科室", "給与"
             }
         ));
         doctorTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -425,7 +428,7 @@ public class DoctorView extends javax.swing.JFrame {
                 }
             }
             clearDoctor();
-            getDoctor();
+            getListDoctor();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "給与は数字で記入お願いいたします。");
         }
@@ -434,7 +437,7 @@ public class DoctorView extends javax.swing.JFrame {
     private void btnSearchDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchDoctorActionPerformed
         // TODO add your handling code here
         try {
-            searchDoctor();
+            searchListDoctor();
         } catch (SQLException ex) {
             Logger.getLogger(DoctorView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -465,7 +468,7 @@ public class DoctorView extends javax.swing.JFrame {
 
     private void btnShowDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowDoctorActionPerformed
         // TODO add your handling code here:
-        getDoctor();
+        getListDoctor();
     }//GEN-LAST:event_btnShowDoctorActionPerformed
 
     private void btnDoctorClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorClearActionPerformed
@@ -500,16 +503,16 @@ public class DoctorView extends javax.swing.JFrame {
                 try {
                     doctorService.insertDoctor(dr);
                 } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(this, "Insert Error!");
+                    JOptionPane.showMessageDialog(this, "医師ID存在しています!他のIDを入力して下さい。");
                 }
                 clearDoctor();
-                getDoctor();
+                getListDoctor();
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "給与は数字で記入お願いいたします。");
         }
 
-        
+
     }//GEN-LAST:event_btnDoctorInsertActionPerformed
 
     private void doctorTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doctorTableMouseClicked
@@ -522,7 +525,8 @@ public class DoctorView extends javax.swing.JFrame {
         input_DoctorName.setText(model.getValueAt(row, 1).toString());
         input_DoctorGender.setText(model.getValueAt(row, 2).toString());
         input_DoctorDepartmentId.setText(model.getValueAt(row, 3).toString());
-        input_DoctorSalary.setText(model.getValueAt(row, 4).toString());
+        jComboBox.setSelectedItem(model.getValueAt(row, 4).toString());
+        input_DoctorSalary.setText(model.getValueAt(row, 5).toString());
     }//GEN-LAST:event_doctorTableMouseClicked
 
     private void btnDoctorDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorDeleteActionPerformed
@@ -542,7 +546,7 @@ public class DoctorView extends javax.swing.JFrame {
             } catch (SQLException ex) {
             }
             clearDoctor();
-            getDoctor();
+            getListDoctor();
         }
 
     }//GEN-LAST:event_btnDoctorDeleteActionPerformed
@@ -567,14 +571,24 @@ public class DoctorView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_clickManagerActionPerformed
 
-    public void getDoctor() {
+//    public void getDoctor() {
+//        searchInfoDoctor.setText("");
+//        DoctorService dr = new DoctorService();
+//        List<Doctor> drInfo = dr.selectAll();
+//        DefaultTableModel df = (DefaultTableModel) doctorTable.getModel();
+//        df.setRowCount(0);
+//        drInfo.forEach((p) -> {
+//            df.addRow(new Object[]{p.getId(), p.getName(), p.getGender(), p.getDepartmentId(), p.getSalary()});
+//        });
+//    }
+    public void getListDoctor() {
         searchInfoDoctor.setText("");
-        DoctorService dr = new DoctorService();
-        List<Doctor> drInfo = dr.selectAll();
+        ListDoctorService dr = new ListDoctorService();
+        List<ListDoctor> drInfo = dr.selectAll();
         DefaultTableModel df = (DefaultTableModel) doctorTable.getModel();
         df.setRowCount(0);
         drInfo.forEach((p) -> {
-            df.addRow(new Object[]{p.getId(), p.getName(), p.getGender(), p.getDepartmentId(), p.getSalary()});
+            df.addRow(new Object[]{p.getDoctorId(), p.getDoctorName(), p.getDoctorGender(),p.getDepartmentId(), p.getDepartmentName(), p.getSalary()});
         });
     }
 
@@ -587,14 +601,24 @@ public class DoctorView extends javax.swing.JFrame {
         input_DoctorSalary.setText("");
     }
 
-    public void searchDoctor() throws SQLException {
+//    public void searchDoctor() throws SQLException {
+//        String keyword = searchInfoDoctor.getText();
+//        DoctorService doctor = new DoctorService();
+//        List<Doctor> searchDoctor = doctor.searchDoctor(keyword);
+//        DefaultTableModel df = (DefaultTableModel) doctorTable.getModel();
+//        df.setRowCount(0);
+//        searchDoctor.forEach((p) -> {
+//            df.addRow(new Object[]{p.getId(), p.getName(), p.getGender(), p.getDepartmentId(), p.getSalary()});
+//        });
+//    }
+    public void searchListDoctor() throws SQLException {
         String keyword = searchInfoDoctor.getText();
-        DoctorService doctor = new DoctorService();
-        List<Doctor> searchDoctor = doctor.searchDoctor(keyword);
+        ListDoctorService doctor = new ListDoctorService();
+        List<ListDoctor> searchDoctor = doctor.searchDoctor(keyword);
         DefaultTableModel df = (DefaultTableModel) doctorTable.getModel();
         df.setRowCount(0);
         searchDoctor.forEach((p) -> {
-            df.addRow(new Object[]{p.getId(), p.getName(), p.getGender(), p.getDepartmentId(), p.getSalary()});
+            df.addRow(new Object[]{p.getDoctorId(), p.getDoctorName(), p.getDoctorGender(),p.getDepartmentId(), p.getDepartmentName(), p.getSalary()});
         });
     }
 

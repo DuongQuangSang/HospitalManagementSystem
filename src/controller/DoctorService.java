@@ -57,57 +57,57 @@ public class DoctorService {
         }
     }
     
-    public List<Doctor> searchDoctor(String keyword) throws SQLException {
-        JdbcConn jc = new JdbcConn();
-        List<Doctor> list = new ArrayList<>();
-        try {
-            jc.getDbcom();
-            String sql = "select * from doctors where doctor_name like '%" + keyword + "%' order by doctor_id;";
-            try {
-                ResultSet resultSet = jc.tt(sql);
-                while (resultSet.next()) {
-                    Doctor dr = new Doctor();
-                    dr.setId(resultSet.getInt("doctor_id"));
-                    dr.setName(resultSet.getString("doctor_name"));
-                    dr.setGender(resultSet.getString("gender"));
-                    dr.setDepartmentId(resultSet.getInt("department_id"));
-                    dr.setSalary(resultSet.getInt("salary"));
-                    list.add(dr);
-                }
-                jc.closeDbcom();
-            } catch (SQLException ex) {
-                Logger.getLogger(DoctorService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DoctorService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return list;
-    }
-    
-    public List<Doctor> selectAll() {
-        JdbcConn jc = new JdbcConn();
-        List<Doctor> list = new ArrayList<>();
-        try {
-            jc.getDbcom();
-            String sql = "select * from doctors;";
-            try {
-                ResultSet resultSet = jc.tt(sql);
-                while (resultSet.next()) {
-                    Doctor dr = new Doctor();
-                    dr.setId(resultSet.getInt("doctor_id"));
-                    dr.setName(resultSet.getString("doctor_name"));
-                    dr.setGender(resultSet.getString("gender"));
-                    dr.setDepartmentId(resultSet.getInt("department_id"));
-                    dr.setSalary(resultSet.getInt("salary"));
-                    list.add(dr);
-                }
-                jc.closeDbcom();
-            } catch (SQLException ex) {
-                Logger.getLogger(DoctorService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DoctorService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return list;
-    }
+//    public List<Doctor> searchDoctor(String keyword) throws SQLException {
+//        JdbcConn jc = new JdbcConn();
+//        List<Doctor> list = new ArrayList<>();
+//        try {
+//            jc.getDbcom();
+//            String sql = "select * from doctors where doctor_name like '%" + keyword + "%' order by doctor_id;";
+//            try {
+//                ResultSet resultSet = jc.tt(sql);
+//                while (resultSet.next()) {
+//                    Doctor dr = new Doctor();
+//                    dr.setId(resultSet.getInt("doctor_id"));
+//                    dr.setName(resultSet.getString("doctor_name"));
+//                    dr.setGender(resultSet.getString("gender"));
+//                    dr.setDepartmentId(resultSet.getInt("department_id"));
+//                    dr.setSalary(resultSet.getInt("salary"));
+//                    list.add(dr);
+//                }
+//                jc.closeDbcom();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(DoctorService.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(DoctorService.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return list;
+//    }
+//    
+//    public List<Doctor> selectAll() {
+//        JdbcConn jc = new JdbcConn();
+//        List<Doctor> list = new ArrayList<>();
+//        try {
+//            jc.getDbcom();
+//            String sql = "select * from doctors;";
+//            try {
+//                ResultSet resultSet = jc.tt(sql);
+//                while (resultSet.next()) {
+//                    Doctor dr = new Doctor();
+//                    dr.setId(resultSet.getInt("doctor_id"));
+//                    dr.setName(resultSet.getString("doctor_name"));
+//                    dr.setGender(resultSet.getString("gender"));
+//                    dr.setDepartmentId(resultSet.getInt("department_id"));
+//                    dr.setSalary(resultSet.getInt("salary"));
+//                    list.add(dr);
+//                }
+//                jc.closeDbcom();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(DoctorService.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(DoctorService.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return list;
+//    }
 }

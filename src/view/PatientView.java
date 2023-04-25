@@ -9,6 +9,7 @@ import controller.ExaminationService;
 import controller.ListPatientService;
 import java.util.List;
 import java.util.function.Consumer;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Examination;
 import model.ListPatient;
@@ -166,27 +167,27 @@ public class PatientView extends javax.swing.JFrame {
 
     private void clickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_clickActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         String patientId = inputPatientId.getText();
         String examId = inputExamId.getText();
-        
+        if (patientId.equals("") || examId.equals("")) {
+            JOptionPane.showMessageDialog(this, "患者IDと検査IDを入力して下さい。");
+            return;
+        }
         ListPatientService patient = new ListPatientService();
-        List<ListPatient> listInfo = patient.selectInfo(patientId,examId);
-        
+        List<ListPatient> listInfo = patient.selectInfo(patientId, examId);
+
         DefaultTableModel df = (DefaultTableModel) infoPatientTable.getModel();
         df.setRowCount(0);
-        listInfo.forEach(new Consumer<ListPatient>() {
-            @Override
-            public void accept(ListPatient p) {
-                df.addRow(new Object[]{p.getName(),p.getExamDate(),p.getDoctorName(),p.getDepartmentName(),p.getDiagnosis(),p.getTreatment()});
-            }
+        listInfo.forEach((p) -> {
+            df.addRow(new Object[]{p.getName(), p.getExamDate(), p.getDoctorName(), p.getDepartmentName(), p.getDiagnosis(), p.getTreatment()});
         });
     }//GEN-LAST:event_btnSearchActionPerformed
-    
+
     public void getInfo() {
         ListPatientService patient = new ListPatientService();
         List<ListPatient> listInfo = patient.selectAll();
@@ -196,6 +197,7 @@ public class PatientView extends javax.swing.JFrame {
             df.addRow(new Object[]{p.getId(), p.getName(), p.getGender(), p.getExamDate(), p.getDepartmentName(), p.getDoctorName(), p.getDiagnosis(), p.getTreatment()});
         });
     }
+
     /**
      * @param args the command line arguments
      */

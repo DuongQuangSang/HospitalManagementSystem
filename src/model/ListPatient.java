@@ -14,6 +14,7 @@ public class ListPatient {
     private int id;
     private String name;
     private String gender;
+    private int examinationId;
     private String examDate;
     private String departmentName;
     private String doctorName;
@@ -47,6 +48,14 @@ public class ListPatient {
         this.gender = gender;
     }
 
+    public int getExaminationId() {
+        return examinationId;
+    }
+
+    public void setExaminationId(int examinationId) {
+        this.examinationId = examinationId;
+    }
+    
     public String getExamDate() {
         return examDate;
     }

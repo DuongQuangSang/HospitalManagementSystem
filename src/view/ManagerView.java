@@ -158,7 +158,7 @@ public class ManagerView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "患者ID", "患者名", "性別", "検査日", "所属科室", "担当医師", "診断", "治療"
+                "患者ID", "患者名", "性別", "検査ID", "検査日", "所属科室", "担当医師", "診断", "治療"
             }
         ));
         listPatientTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -257,7 +257,7 @@ public class ManagerView extends javax.swing.JFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
-        jLabel1.setText("患者名リスク");
+        jLabel1.setText("患者リスク");
 
         jLabel6.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
         jLabel6.setText("患者名の情報");
@@ -477,17 +477,14 @@ public class ManagerView extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane13, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.CENTER)))))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))
-                        .addGap(8, 8, 8)
-                        .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel18)))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel18)
+                    .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel19)
@@ -527,7 +524,7 @@ public class ManagerView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "検査ID", "患者ID", "医師ID", "所属科室ID", "検査日", "診断", "治療"
+                "検査ID", "医師ID", "患者ID", "所属科室ID", "検査日", "診断", "治療"
             }
         ));
         examinationTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -538,7 +535,7 @@ public class ManagerView extends javax.swing.JFrame {
         jScrollPane7.setViewportView(examinationTable);
 
         jLabel7.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
-        jLabel7.setText("検査名リスク");
+        jLabel7.setText("検査リスク");
 
         btnPatientClear.setText("X");
         btnPatientClear.setPreferredSize(new java.awt.Dimension(58, 21));
@@ -779,7 +776,7 @@ public class ManagerView extends javax.swing.JFrame {
             try {
                 patientService.insertPatient(ptn);
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(this, "Insert Error!");
+                JOptionPane.showMessageDialog(this, "患者ID存在しています!他のIDを入力して下さい。");
             }
         }
         getPatient();
@@ -898,7 +895,7 @@ public class ManagerView extends javax.swing.JFrame {
             try {
                 examinationService.insertExamination(exam);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Insert Error!");
+                JOptionPane.showMessageDialog(this, "検査ID存在しています!他のIDを入力して下さい。");
             }
         }
         getExamination();
@@ -967,7 +964,7 @@ public class ManagerView extends javax.swing.JFrame {
         DefaultTableModel df = (DefaultTableModel) listPatientTable.getModel();
         df.setRowCount(0);
         listInfo.forEach((p) -> {
-            df.addRow(new Object[]{p.getId(), p.getName(), p.getGender(), p.getExamDate(), p.getDepartmentName(), p.getDoctorName(), p.getDiagnosis(), p.getTreatment()});
+            df.addRow(new Object[]{p.getId(), p.getName(), p.getGender(), p.getExaminationId(), p.getExamDate(), p.getDepartmentName(), p.getDoctorName(), p.getDiagnosis(), p.getTreatment()});
         });
     }
 

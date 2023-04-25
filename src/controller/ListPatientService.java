@@ -34,6 +34,7 @@ public class ListPatientService {
             String sql = "select p.patient_id"
                     + ", p.patient_name"
                     + ", p.gender"
+                    + ", e.examination_id"
                     + ", e.examination_date"
                     + ", dpm.department_name"
                     + ", d.doctor_name"
@@ -50,6 +51,7 @@ public class ListPatientService {
                     patient.setId(resultSet.getInt("patient_id"));
                     patient.setName(resultSet.getString("patient_name"));
                     patient.setGender(resultSet.getString("gender"));
+                    patient.setExaminationId(resultSet.getInt("examination_id"));
                     patient.setExamDate(resultSet.getString("examination_date"));
                     patient.setDepartmentName(resultSet.getString("department_name"));
                     patient.setDoctorName(resultSet.getString("doctor_name"));
