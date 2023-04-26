@@ -27,7 +27,8 @@ public class JdbcConn {
     String url = "jdbc:postgresql://localhost:5432/postgres";
     String user = "postgres";
     String password = "postgres";
-
+    
+    // データベースに接続する
     public Connection getDbcom() throws ClassNotFoundException {
         if (conn == null) {
             Class.forName("org.postgresql.Driver");
@@ -40,7 +41,8 @@ public class JdbcConn {
         return conn;
 
     }
-
+    
+    // 検索、一覧に使う
     public ResultSet tt(String sql) throws SQLException {
         ResultSet resultSet;
         Statement query = null;
@@ -54,6 +56,7 @@ public class JdbcConn {
         return resultSet;
     }
 
+    // 新規、変更、削除に使う
     public void cud(String sql) throws SQLException {
 
         stmt.executeUpdate(sql);
@@ -61,7 +64,8 @@ public class JdbcConn {
         System.out.println(sql);
 
     }
-
+    
+    // データベースに接続ことを切る
     public void closeDbcom() throws SQLException {
         if (rset != null) {
             rset.close();

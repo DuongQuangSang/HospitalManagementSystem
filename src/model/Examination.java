@@ -6,7 +6,7 @@
 package model;
 
 /**
- *
+ * 検査情報をインスタンス化
  * @author user
  */
 public class Examination {

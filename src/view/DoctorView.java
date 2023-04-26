@@ -5,9 +5,9 @@
  */
 package view;
 
-import controller.DoctorService;
-import controller.ListDoctorService;
-import controller.PatientService;
+import service.DoctorService;
+import service.ListDoctorService;
+import service.PatientService;
 import java.awt.event.ItemEvent;
 import java.sql.SQLException;
 import java.util.List;
@@ -571,16 +571,6 @@ public class DoctorView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_clickManagerActionPerformed
 
-//    public void getDoctor() {
-//        searchInfoDoctor.setText("");
-//        DoctorService dr = new DoctorService();
-//        List<Doctor> drInfo = dr.selectAll();
-//        DefaultTableModel df = (DefaultTableModel) doctorTable.getModel();
-//        df.setRowCount(0);
-//        drInfo.forEach((p) -> {
-//            df.addRow(new Object[]{p.getId(), p.getName(), p.getGender(), p.getDepartmentId(), p.getSalary()});
-//        });
-//    }
     public void getListDoctor() {
         searchInfoDoctor.setText("");
         ListDoctorService dr = new ListDoctorService();
@@ -588,7 +578,7 @@ public class DoctorView extends javax.swing.JFrame {
         DefaultTableModel df = (DefaultTableModel) doctorTable.getModel();
         df.setRowCount(0);
         drInfo.forEach((p) -> {
-            df.addRow(new Object[]{p.getDoctorId(), p.getDoctorName(), p.getDoctorGender(),p.getDepartmentId(), p.getDepartmentName(), p.getSalary()});
+            df.addRow(new Object[]{p.getDoctorId(), p.getDoctorName(), p.getDoctorGender(), p.getDepartmentId(), p.getDepartmentName(), p.getSalary()});
         });
     }
 
@@ -601,16 +591,6 @@ public class DoctorView extends javax.swing.JFrame {
         input_DoctorSalary.setText("");
     }
 
-//    public void searchDoctor() throws SQLException {
-//        String keyword = searchInfoDoctor.getText();
-//        DoctorService doctor = new DoctorService();
-//        List<Doctor> searchDoctor = doctor.searchDoctor(keyword);
-//        DefaultTableModel df = (DefaultTableModel) doctorTable.getModel();
-//        df.setRowCount(0);
-//        searchDoctor.forEach((p) -> {
-//            df.addRow(new Object[]{p.getId(), p.getName(), p.getGender(), p.getDepartmentId(), p.getSalary()});
-//        });
-//    }
     public void searchListDoctor() throws SQLException {
         String keyword = searchInfoDoctor.getText();
         ListDoctorService doctor = new ListDoctorService();
@@ -618,7 +598,7 @@ public class DoctorView extends javax.swing.JFrame {
         DefaultTableModel df = (DefaultTableModel) doctorTable.getModel();
         df.setRowCount(0);
         searchDoctor.forEach((p) -> {
-            df.addRow(new Object[]{p.getDoctorId(), p.getDoctorName(), p.getDoctorGender(),p.getDepartmentId(), p.getDepartmentName(), p.getSalary()});
+            df.addRow(new Object[]{p.getDoctorId(), p.getDoctorName(), p.getDoctorGender(), p.getDepartmentId(), p.getDepartmentName(), p.getSalary()});
         });
     }
 

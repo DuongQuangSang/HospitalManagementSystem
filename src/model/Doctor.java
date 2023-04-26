@@ -6,7 +6,7 @@
 package model;
 
 /**
- *
+ * 医師情報をインスタンス化
  * @author user
  */
 public class Doctor {

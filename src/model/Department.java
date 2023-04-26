@@ -6,7 +6,7 @@
 package model;
 
 /**
- *
+ * 診療科情報をインスタンス化
  * @author user
  */
 public class Department {

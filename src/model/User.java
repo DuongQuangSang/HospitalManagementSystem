@@ -6,7 +6,7 @@
 package model;
 
 /**
- *
+ * ユーザー情報をインスタンス化
  * @author user
  */
 public class User {

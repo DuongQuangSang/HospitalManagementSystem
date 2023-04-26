@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.UserService;
+import service.UserService;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.User;
@@ -229,8 +229,10 @@ public class SignUpView extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+        inputUserName.setText("");
         inputName.setText("");
         inputPassWord.setText("");
+        inputRePassWord.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void inputRePassWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputRePassWordActionPerformed

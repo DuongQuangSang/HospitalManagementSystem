@@ -5,9 +5,9 @@
  */
 package view;
 
-import controller.ExaminationService;
-import controller.ListPatientService;
-import controller.PatientService;
+import service.ExaminationService;
+import service.ListPatientService;
+import service.PatientService;
 import daojdbcconn.JdbcConn;
 import java.sql.Connection;
 import java.sql.DriverManager;

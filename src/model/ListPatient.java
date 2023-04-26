@@ -6,14 +6,15 @@
 package model;
 
 /**
- *
+ * 患者情報と検査情報結合、インスタンス化
  * @author user
  */
 public class ListPatient {
-
+    // 患者情報
     private int id;
     private String name;
     private String gender;
+    // 検査情報
     private int examinationId;
     private String examDate;
     private String departmentName;

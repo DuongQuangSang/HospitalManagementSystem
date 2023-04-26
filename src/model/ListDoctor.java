@@ -6,15 +6,17 @@
 package model;
 
 /**
- *
+ * 医師情報と診療科情報結合、インスタンス化
  * @author user
  */
 public class ListDoctor {
+    // 医師情報
     private int doctorId;
     private String doctorName;
     private String doctorGender;
-    private int departmentId;
     private int salary;
+    // 診療科情報
+    private int departmentId;
     private String departmentName;
     private String departmentDescription;
     

@@ -5,8 +5,8 @@
  */
 package view;
 
-import controller.ExaminationService;
-import controller.ListPatientService;
+import service.ExaminationService;
+import service.ListPatientService;
 import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;

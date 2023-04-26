@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.UserService;
+import service.UserService;
 import daojdbcconn.JdbcConn;
 import java.sql.SQLException;
 import java.util.logging.Level;
