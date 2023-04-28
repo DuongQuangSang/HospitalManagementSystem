@@ -41,9 +41,9 @@ public class ListPatientService {
                     + ", e.diagnosis"
                     + ", e.treatment "
                     + "from patients p left join examinations e on p.patient_id = e.patient_id "
-                    + "left join doctors d on e.doctor_id = d.doctor_id "
-                    + "left join departments dpm on e.department_id = dpm.department_id "
-                    + "order by p.patient_id;";
+                    + "join doctors d on e.doctor_id = d.doctor_id "
+                    + "join departments dpm on e.department_id = dpm.department_id "
+                    + "order by e.examination_id;";
             try {
                 ResultSet resultSet = jc.tt(sql);
                 while (resultSet.next()) {

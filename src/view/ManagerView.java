@@ -41,7 +41,7 @@ public class ManagerView extends javax.swing.JFrame {
         getList();
         clickDoctor.setVisible(false);
     }
-    
+
     public ManagerView(JMenuItem item) {
         initComponents();
         getList();
@@ -136,6 +136,7 @@ public class ManagerView extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu6 = new javax.swing.JMenu();
         clickDoctor = new javax.swing.JMenuItem();
+        clickLogOut = new javax.swing.JMenuItem();
         clickExit = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
@@ -151,7 +152,7 @@ public class ManagerView extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("aaaaa");
+        setTitle("総合管理");
 
         listPatientTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -552,13 +553,21 @@ public class ManagerView extends javax.swing.JFrame {
             }
         });
 
-        clickDoctor.setText("医師");
+        clickDoctor.setText("医師管理");
         clickDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clickDoctorActionPerformed(evt);
             }
         });
         jMenu6.add(clickDoctor);
+
+        clickLogOut.setText("ログアウト");
+        clickLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickLogOutActionPerformed(evt);
+            }
+        });
+        jMenu6.add(clickLogOut);
 
         clickExit.setText("終了");
         clickExit.addActionListener(new java.awt.event.ActionListener() {
@@ -957,6 +966,15 @@ public class ManagerView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_clickDoctorActionPerformed
 
+    private void clickLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickLogOutActionPerformed
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(null, "ログアウトよろしでしょうか。 ", "ログアウト", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            new LoginView().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_clickLogOutActionPerformed
+
     // SHOW
     public void getList() {
         ListPatientService patient = new ListPatientService();
@@ -1091,6 +1109,7 @@ public class ManagerView extends javax.swing.JFrame {
     private javax.swing.JButton btnShowPatient;
     private javax.swing.JMenuItem clickDoctor;
     private javax.swing.JMenuItem clickExit;
+    private javax.swing.JMenuItem clickLogOut;
     private javax.swing.JTable examinationTable;
     private javax.swing.JTextPane input_ExaminationDepartmentId;
     private javax.swing.JTextPane input_ExaminationDiagnosis;

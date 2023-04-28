@@ -71,6 +71,7 @@ public class PatientView extends javax.swing.JFrame {
         jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("患者の検査結果検索");
 
         jLabel1.setFont(new java.awt.Font("MS UI Gothic", 0, 14)); // NOI18N
         jLabel1.setText("患者ID");

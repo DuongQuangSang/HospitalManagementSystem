@@ -89,6 +89,7 @@ public class DoctorView extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         clickManagerView = new javax.swing.JMenu();
         clickManager = new javax.swing.JMenuItem();
+        clickLogout = new javax.swing.JMenuItem();
         clickExit = new javax.swing.JMenuItem();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -128,6 +129,7 @@ public class DoctorView extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("医師管理");
         setPreferredSize(new java.awt.Dimension(1080, 700));
 
         jLabel2.setFont(new java.awt.Font("MS UI Gothic", 0, 14)); // NOI18N
@@ -339,13 +341,21 @@ public class DoctorView extends javax.swing.JFrame {
             }
         });
 
-        clickManager.setText("管理");
+        clickManager.setText("総合管理");
         clickManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clickManagerActionPerformed(evt);
             }
         });
         clickManagerView.add(clickManager);
+
+        clickLogout.setText("ログアウト");
+        clickLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickLogoutActionPerformed(evt);
+            }
+        });
+        clickManagerView.add(clickLogout);
 
         clickExit.setText("終了");
         clickExit.addActionListener(new java.awt.event.ActionListener() {
@@ -571,6 +581,15 @@ public class DoctorView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_clickManagerActionPerformed
 
+    private void clickLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickLogoutActionPerformed
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(null, "ログアウトよろしでしょうか。 ", "ログアウト", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            new LoginView().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_clickLogoutActionPerformed
+
     public void getListDoctor() {
         searchInfoDoctor.setText("");
         ListDoctorService dr = new ListDoctorService();
@@ -645,6 +664,7 @@ public class DoctorView extends javax.swing.JFrame {
     private javax.swing.JButton btnSearchDoctor;
     private javax.swing.JButton btnShowDoctor;
     private javax.swing.JMenuItem clickExit;
+    private javax.swing.JMenuItem clickLogout;
     private javax.swing.JMenuItem clickManager;
     private javax.swing.JMenu clickManagerView;
     private javax.swing.JTable doctorTable;

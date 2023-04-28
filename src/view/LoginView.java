@@ -48,6 +48,7 @@ public class LoginView extends javax.swing.JFrame {
         btnPatient = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("ログイン");
 
         jLabel1.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         jLabel1.setText("ユーザー");

@@ -46,6 +46,7 @@ public class SignUpView extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("ユーザー登録");
 
         jLabel1.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         jLabel1.setText("名前");
